@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Marketing Strategy Hub</title>
+    <title>Digital Marketing By SkillBite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -28,15 +28,35 @@
         .step-detail.open { max-height: 150px; }
         .card-hover { transition: all 0.3s ease; border: 1px solid #E2E8F0; }
         .card-hover:hover { transform: translateY(-4px); border-color: #2563EB; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        
+        .custom-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bolt {
+            width: 20px;
+            height: 28px;
+            background-color: white;
+            clip-path: polygon(45% 0%, 100% 0%, 55% 45%, 90% 45%, 15% 100%, 45% 55%, 10% 55%);
+        }
     </style>
 </head>
 <body class="font-sans">
 
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">DM</div>
-                <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">Digital Marketing Hub</h1>
+            <div class="flex items-center gap-4">
+                <div class="custom-icon">
+                    <div class="bolt"></div>
+                </div>
+                <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">Digital Marketing By SkillBite</h1>
             </div>
             <nav class="flex flex-wrap gap-2">
                 <button onclick="showTab('fundamentals')" id="btn-fundamentals" class="nav-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all">Fundamentals</button>
@@ -77,7 +97,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- SEO -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold">SEO</div>
+                    <div class="h-12 w-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">SEO</div>
                     <h4 class="font-bold text-lg mb-2">Search Engine Optimization</h4>
                     <p class="text-sm text-slate-500 mb-4">Ranking your website on top search results organically.</p>
                     <div class="space-y-1">
@@ -88,31 +108,31 @@
                 </div>
                 <!-- PPC -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 font-bold">PPC</div>
+                    <div class="h-12 w-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">PPC</div>
                     <h4 class="font-bold text-lg mb-2">Pay-Per-Click</h4>
                     <p class="text-sm text-slate-500">Instant traffic generation by paying per interaction. Best for quick results and highly targeted leads.</p>
                 </div>
                 <!-- SMM -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 font-bold">SMM</div>
+                    <div class="h-12 w-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">SMM</div>
                     <h4 class="font-bold text-lg mb-2">Social Media Marketing</h4>
                     <p class="text-sm text-slate-500">Building brand identity on platforms like Instagram and Facebook to drive engagement and loyalty.</p>
                 </div>
                 <!-- Content -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 font-bold">CM</div>
+                    <div class="h-12 w-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">CM</div>
                     <h4 class="font-bold text-lg mb-2">Content Marketing</h4>
                     <p class="text-sm text-slate-500">Sharing valuable articles and videos to educate the audience and eventually convert them into customers.</p>
                 </div>
                 <!-- Affiliate -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4 font-bold">AM</div>
+                    <div class="h-12 w-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">AM</div>
                     <h4 class="font-bold text-lg mb-2">Affiliate Marketing</h4>
                     <p class="text-sm text-slate-500">Earning commissions by selling third-party products through referral links and performance-based marketing.</p>
                 </div>
                 <!-- Influencer -->
                 <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="h-12 w-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 font-bold">IM</div>
+                    <div class="h-12 w-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 font-bold text-xs">IM</div>
                     <h4 class="font-bold text-lg mb-2">Influencer Marketing</h4>
                     <p class="text-sm text-slate-500">Partnering with individuals who have established trust and large followings to promote your brand.</p>
                 </div>
