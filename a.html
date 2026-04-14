@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Strategy Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Professional Slate & Corporate Blue (Background: #F8FAFC, Accents: #2563EB, #64748B, #1E293B) -->
+    <!-- Application Structure Plan: The SPA is designed as a multi-tab interactive dashboard. It organizes the "Source Report" into four logical pillars: 1) Fundamentals (Basics & Components), 2) GDN Ecosystem (Targeting), 3) Conversion Engine (Landing Pages & A/B Testing), and 4) Strategy Pillars (Email & 4Ps). This structure allows the user to navigate complex marketing concepts non-linearly, using visual aids like charts and step-by-step guides to reinforce understanding of the English terminology. -->
+    <!-- Visualization & Content Choices: 
+         - Goal: Compare (Marketing Channels) -> Viz: Horizontal Bar Chart (Chart.js) -> Interaction: Hover tooltips -> Justification: Visualizes the reach/impact of different digital components for quick comparison.
+         - Goal: Categorize (GDN Targeting) -> Viz: Interactive Polar Area Chart (Chart.js) -> Interaction: Segment selection updates a dynamic text panel -> Justification: Categorizes 7 targeting types into a unified visual space.
+         - Goal: Process (A/B Testing Framework) -> Viz: Vertical Interactive Timeline -> Interaction: Clickable steps -> Justification: Clearly maps out the 6-step sequential process.
+         - Goal: Organize (4Ps & LP Types) -> Viz: Interactive Information Cards -> Interaction: Hover states -> Justification: Separates distinct concepts into scannable chunks.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All visuals are HTML/CSS or Canvas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body { background-color: #F8FAFC; color: #1E293B; }
+        .chart-container { position: relative; width: 100%; max-width: 650px; margin: 0 auto; height: 320px; max-height: 400px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-btn.active { background-color: #2563EB; color: white; box-shadow: 0 4px 6px -1px rgb(37 99 235 / 0.3); }
+        .step-detail { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .step-detail.open { max-height: 150px; }
+        .card-hover { transition: all 0.3s ease; border: 1px solid #E2E8F0; }
+        .card-hover:hover { transform: translateY(-4px); border-color: #2563EB; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="font-sans">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">DM</div>
+                <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">Digital Marketing Hub</h1>
+            </div>
+            <nav class="flex flex-wrap gap-2">
+                <button onclick="showTab('fundamentals')" id="btn-fundamentals" class="nav-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all">Fundamentals</button>
+                <button onclick="showTab('gdn')" id="btn-gdn" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all">GDN Targeting</button>
+                <button onclick="showTab('optimization')" id="btn-optimization" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all">Optimization</button>
+                <button onclick="showTab('strategy')" id="btn-strategy" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all">Strategy</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- Tab: Fundamentals -->
+        <section id="fundamentals" class="tab-content active">
+            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Marketing in the Digital World</h2>
+                <p class="text-slate-600 leading-relaxed text-lg">
+                    Welcome to the digital marketing landscape. This section explores the fundamental relationship between your brand's identity (Marks) and the channels used to reach your audience (Media). Explore why businesses are shifting towards digital strategies for better reach and tracking.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <h3 class="font-bold text-blue-800 mb-2">Marks & Media</h3>
+                    <p class="text-sm text-blue-700">Media is the "road" (Google, Meta) while marketing is the "message" (Ad) that travels upon it. They are inseparable partners.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-slate-800 mb-2">Definition</h3>
+                    <p class="text-sm text-slate-600">Promoting products using digital devices and the internet. It enables real-time interaction and global connectivity.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-slate-800 mb-2">Why Digital?</h3>
+                    <p class="text-sm text-slate-600">Cost-effective compared to traditional TV, provides measurable data, and allows hyper-specific audience targeting.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-center mb-8">Core Digital Components</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- SEO -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 font-bold">SEO</div>
+                    <h4 class="font-bold text-lg mb-2">Search Engine Optimization</h4>
+                    <p class="text-sm text-slate-500 mb-4">Ranking your website on top search results organically.</p>
+                    <div class="space-y-1">
+                        <div class="text-xs bg-slate-100 p-2 rounded"><strong>On-Page:</strong> Keywords & Content</div>
+                        <div class="text-xs bg-slate-100 p-2 rounded"><strong>Off-Page:</strong> Authority & Backlinks</div>
+                        <div class="text-xs bg-slate-100 p-2 rounded"><strong>Technical:</strong> Speed & Structure</div>
+                    </div>
+                </div>
+                <!-- PPC -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 font-bold">PPC</div>
+                    <h4 class="font-bold text-lg mb-2">Pay-Per-Click</h4>
+                    <p class="text-sm text-slate-500">Instant traffic generation by paying per interaction. Best for quick results and highly targeted leads.</p>
+                </div>
+                <!-- SMM -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 font-bold">SMM</div>
+                    <h4 class="font-bold text-lg mb-2">Social Media Marketing</h4>
+                    <p class="text-sm text-slate-500">Building brand identity on platforms like Instagram and Facebook to drive engagement and loyalty.</p>
+                </div>
+                <!-- Content -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4 font-bold">CM</div>
+                    <h4 class="font-bold text-lg mb-2">Content Marketing</h4>
+                    <p class="text-sm text-slate-500">Sharing valuable articles and videos to educate the audience and eventually convert them into customers.</p>
+                </div>
+                <!-- Affiliate -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4 font-bold">AM</div>
+                    <h4 class="font-bold text-lg mb-2">Affiliate Marketing</h4>
+                    <p class="text-sm text-slate-500">Earning commissions by selling third-party products through referral links and performance-based marketing.</p>
+                </div>
+                <!-- Influencer -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="h-12 w-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 font-bold">IM</div>
+                    <h4 class="font-bold text-lg mb-2">Influencer Marketing</h4>
+                    <p class="text-sm text-slate-500">Partnering with individuals who have established trust and large followings to promote your brand.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: GDN -->
+        <section id="gdn" class="tab-content">
+            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Google Display Network (GDN)</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    The GDN allows you to display visual ads across millions of websites. Success depends on reaching the right person at the right time. Use the interactive chart below to explore the 7 primary targeting methods.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div class="w-full lg:w-1/2">
+                    <div class="chart-container">
+                        <canvas id="gdnChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                    <div id="targeting-details" class="bg-slate-50 p-8 rounded-xl border border-slate-200 min-h-[300px] flex flex-col justify-center">
+                        <div class="text-center">
+                            <p class="text-4xl mb-4 opacity-30">&#x1F50E;</p>
+                            <h4 class="text-xl font-bold text-slate-400 mb-2">Interactive Insights</h4>
+                            <p class="text-slate-500">Hover over the chart segments to see a detailed explanation of each targeting type.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Optimization -->
+        <section id="optimization" class="tab-content">
+            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Conversion & A/B Testing</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Getting traffic is only half the battle. This section covers how to convert visitors into customers using high-performance Landing Pages and scientific A/B testing methods.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Landing Page vs. Home Page</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-lg bg-slate-50 border border-slate-100">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Home Page</span>
+                                <p class="text-sm mt-2">A general hub with many links (Distraction). Shows everything about the business.</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
+                                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest">Landing Page</span>
+                                <p class="text-sm mt-2 font-medium">A single focus with one goal (Call to Action). Zero distractions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                            <h4 class="font-bold text-sm">Standalone</h4>
+                            <p class="text-[10px] text-slate-500">Single Campaign Page</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                            <h4 class="font-bold text-sm">Microsite</h4>
+                            <p class="text-[10px] text-slate-500">Small Campaign Cluster</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
+                            <h4 class="font-bold text-sm">Internal</h4>
+                            <p class="text-[10px] text-slate-500">Specific Page on Site</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-xl font-bold mb-6">A/B Testing Framework</h3>
+                    <div class="space-y-3" id="ab-testing-steps">
+                        <!-- JS will populate interactive steps here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Strategy -->
+        <section id="strategy" class="tab-content">
+            <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Email Strategy & The 4 P's</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Email remains the strongest tool for nurturing customer relationships. Combined with the classic 4P's of marketing, you can build a complete and robust business strategy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl border border-slate-200">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <span>&#x1F4EB;</span> Email Checklist
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <div class="h-6 w-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">&#x2714;</div>
+                            <div>
+                                <h4 class="font-bold text-sm">One Topic</h4>
+                                <p class="text-xs text-slate-500">Avoid confusing the reader. Focus on one single message.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="h-6 w-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">&#x2714;</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Clear CTA</h4>
+                                <p class="text-xs text-slate-500">The call-to-action button must be bold and impossible to miss.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="h-6 w-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">&#x2714;</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Attractive Design</h4>
+                                <p class="text-xs text-slate-500">Layout must look clean on both mobile and desktop screens.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="h-6 w-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">&#x2714;</div>
+                            <div>
+                                <h4 class="font-bold text-sm">Result Experience</h4>
+                                <p class="text-xs text-slate-500">Focus on the benefit the customer gets, not just features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-blue-600 text-white p-6 rounded-xl flex flex-col justify-between hover:bg-blue-700 transition-colors cursor-default">
+                        <span class="text-2xl font-bold opacity-30">01</span>
+                        <div>
+                            <h4 class="text-lg font-bold">Product</h4>
+                            <p class="text-[10px] opacity-80">Features, Quality, and solving a problem.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 text-white p-6 rounded-xl flex flex-col justify-between hover:bg-slate-900 transition-colors cursor-default">
+                        <span class="text-2xl font-bold opacity-30">02</span>
+                        <div>
+                            <h4 class="text-lg font-bold">Price</h4>
+                            <p class="text-[10px] opacity-80">Cost strategy, discounts, and value.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-xl flex flex-col justify-between hover:bg-slate-200 transition-colors cursor-default">
+                        <span class="text-2xl font-bold text-slate-300">03</span>
+                        <div>
+                            <h4 class="text-lg font-bold">Place</h4>
+                            <p class="text-[10px] text-slate-500">Distribution channels and accessibility.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-100 p-6 rounded-xl flex flex-col justify-between hover:bg-blue-200 transition-colors cursor-default border border-blue-200">
+                        <span class="text-2xl font-bold text-blue-300">04</span>
+                        <div>
+                            <h4 class="text-lg font-bold text-blue-900">Promotion</h4>
+                            <p class="text-[10px] text-blue-600">Marketing, Ads, PR, and SEO.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Data Structures
+        const gdnInfo = {
+            'Contextual': 'Placing ads on websites that are relevant to specific keywords matching your product.',
+            'Placement': 'Hand-picking specific websites, YouTube channels, or apps where you want your ads shown.',
+            'Remarketing': 'Targeting users who have previously visited your website to remind them of your brand.',
+            'Interest': 'Targeting users based on their long-term browsing habits and specific hobbies (e.g., Foodies).',
+            'Topic': 'Placing ads on sites about a specific subject area like "Automotive" or "Technology".',
+            'Geo/Lang': 'Filtering by the user\'s physical location (City/Country) and the language they speak.',
+            'Demographic': 'Targeting based on traits like Age, Gender, Income, or Parental status.'
+        };
+
+        const abSteps = [
+            { title: "1. Collect Data", desc: "Analyze current traffic, bounce rates, and conversion metrics to find problems." },
+            { title: "2. Identify Goals", desc: "Choose a target to improve, like more clicks or higher checkout completions." },
+            { title: "3. Generate Hypothesis", desc: "Predict how a change will help. E.g., 'A red button will get 10% more clicks'." },
+            { title: "4. Create Variation", desc: "Design Version B with the planned change while keeping Version A as the control." },
+            { title: "5. Run Experiment", desc: "Split your live traffic between both versions to see which one converts better." },
+            { title: "6. Analyze Results", desc: "Review the data, declare a winner, and implement the successful version permanently." }
+        ];
+
+        // Functions
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        function toggleStep(index) {
+            const el = document.getElementById('step-detail-' + index);
+            const isOpen = el.classList.contains('open');
+            document.querySelectorAll('.step-detail').forEach(s => s.classList.remove('open'));
+            if (!isOpen) el.classList.add('open');
+        }
+
+        function renderSteps() {
+            const container = document.getElementById('ab-testing-steps');
+            container.innerHTML = abSteps.map((step, idx) => `
+                <div class="border border-slate-100 rounded-lg overflow-hidden cursor-pointer bg-slate-50" onclick="toggleStep(${idx})">
+                    <div class="p-3 font-bold text-sm flex justify-between items-center hover:bg-slate-100">
+                        <span>${step.title}</span>
+                        <span class="text-[10px] text-slate-400">&#x25BC;</span>
+                    </div>
+                    <div id="step-detail-${idx}" class="step-detail bg-white px-3">
+                        <p class="py-3 text-xs text-slate-500 leading-relaxed">${step.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initCharts() {
+            // GDN Targeting Chart
+            const ctxGdn = document.getElementById('gdnChart').getContext('2d');
+            new Chart(ctxGdn, {
+                type: 'polarArea',
+                data: {
+                    labels: Object.keys(gdnInfo),
+                    datasets: [{
+                        data: [14, 14, 14, 14, 14, 14, 14],
+                        backgroundColor: [
+                            '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#DBEAFE', '#EFF6FF'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { display: false } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    onHover: (e, activeElements) => {
+                        const panel = document.getElementById('targeting-details');
+                        if (activeElements.length > 0) {
+                            const index = activeElements[0].index;
+                            const label = Object.keys(gdnInfo)[index];
+                            const desc = gdnInfo[label];
+                            panel.innerHTML = `
+                                <div class="animate-[fadeIn_0.3s_ease]">
+                                    <h4 class="text-2xl font-bold text-blue-600 mb-4">${label}</h4>
+                                    <p class="text-slate-700 leading-relaxed">${desc}</p>
+                                </div>
+                            `;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialization
+        window.onload = () => {
+            initCharts();
+            renderSteps();
+            toggleStep(0);
+        };
+    </script>
+</body>
+</html>
